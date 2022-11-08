@@ -8,14 +8,12 @@ import (
 )
 
 func main() {
-	engine := html.New("./src/layouts/", ".html")
+	engine := html.New("layouts/", ".html")
 
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
 
 	routes.Setup(app)
-	app.Static("/assets", "./src/public")
-
 	app.Listen(":8000")
 }

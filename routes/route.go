@@ -8,4 +8,7 @@ import (
 
 func Setup(app *fiber.App) {
 	app.Get("/", controllers.Index)
+	app.Get("/getjwt", controllers.GetJWT)
+	app.Post("/checkJwt", controllers.CheckJwt)
+
 }
