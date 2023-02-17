@@ -13,19 +13,32 @@
 <body>
     <div class="col-md-12 row justify-content-center mt-5">
         <div class="row justify-content-center col-md-6">
-            <div class="mb-3">
-                <form action="/checkJwt" method="post">
-                    <label for="exampleFormControlInput1" class="form-label">check your jwt</label>
-                    <input type="text" class="form-control" name="jwt" id="exampleFormControlInput1" placeholder="JWT">
-                    <div class="mt-5 col-md-12 row justify-content-center">
-                        <button type="submit" class="btn btn-primary col-md-6">Submit</button>
-                    </div>
-                </form>
+            <div class="col">
+                <div class="mb-5">
+                    <form action="/checkJwt" method="post">
+                        <label for="exampleFormControlInput1" class="form-label">check your jwt</label>
+                        <input type="text" class="form-control" name="jwt" id="exampleFormControlInput1"
+                            placeholder="JWT">
+                        <div class="mt-5 col-md-12 row justify-content-center">
+                            <button type="submit" class="btn btn-primary col-md-6">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-3">
+                    <form action="/checkJwt2" method="post">
+                        <label for="exampleFormControlInput1" class="form-label">check your jwt Non Algorithm</label>
+                        <input type="text" class="form-control" name="jwt" id="exampleFormControlInput1"
+                            placeholder="JWT">
+                        <div class="mt-5 col-md-12 row justify-content-center">
+                            <button type="submit" class="btn btn-warning col-md-6">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <form action="/getjwt" method="get">
                 <div class="mt-5 col-md-12 row justify-content-center">
 
-                    <button type="submit" class="btn btn-primary col-md-6">Get Valid JWT</button>
+                    <button type="submit" class="btn btn-success col-md-6">Get Valid JWT</button>
 
                 </div>
 
@@ -37,6 +50,12 @@
                 {{if eq .Msg "Your JWT is valid."}}
                 <div class="alert alert-success  mt-5" role="alert">
                     {{.Msg}}
+                </div>
+                {{end}}
+
+                {{if eq .Msg "Subject: "}}
+                <div class="alert alert-success  mt-5" role="alert">
+                    {{.Msg}} {{.Val}}
                 </div>
                 {{end}}
 

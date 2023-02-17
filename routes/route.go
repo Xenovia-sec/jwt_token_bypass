@@ -10,5 +10,6 @@ func Setup(app *fiber.App) {
 	app.Get("/", controllers.Index)
 	app.Get("/getjwt", controllers.GetJWT)
 	app.Post("/checkJwt", controllers.CheckJwt)
+	app.Post("/checkJwt2", controllers.CheckJwtVuln)
 
 }

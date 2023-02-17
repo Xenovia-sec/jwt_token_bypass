@@ -61,3 +61,30 @@ func CheckJwt(c *fiber.Ctx) error {
 		"Msg": "Your JWT is valid.",
 	})
 }
+
+func CheckJwtVuln(c *fiber.Ctx) error {
+	register := new(Jwt)
+
+	if err := c.BodyParser(register); err != nil {
+		log.Fatalln("error = ", err)
+		return c.SendStatus(404)
+	}
+	token, err := jwt.ParseWithClaims(register.Jwt, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(getSecret()), nil
+	})
+	if err != nil || !token.Valid {
+		fmt.Println("unvalid")
+		// return c.Render("index", fiber.Map{
+		// 	"Jwt": "",
+		// 	"Msg": "Your JWT is not valid.",
+		// })
+	}
+	payload := token.Claims.(*jwt.StandardClaims)
+
+	id := payload.Subject
+	return c.Render("index", fiber.Map{
+		"Jwt": "",
+		"Msg": "Subject: ",
+		"Val": id,
+	})
+}
